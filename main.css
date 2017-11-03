@@ -1,0 +1,129 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #333;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  color: #1969a6;
+}
+nav ul {
+  padding: 0 20px;
+  background: #eee;
+  background-size: contain;
+  min-width: 400px;
+}
+nav .right {
+  float: right;
+}
+nav ul li {
+  display: inline-block;
+}
+nav ul li a {
+  line-height: 50px;
+  padding: 0 20px;
+  display: inline-block;
+}
+
+
+body {
+    background: #FEFEFE;
+    font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+    font-size: 15pt;
+}
+
+x {
+    max-width: 75%;
+    margin: auto;
+}
+
+header {
+    border-bottom: 1px solid #AFAFAF;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #333;
+    margin-bottom: 5px;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.75rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+h4 {
+    font-size: 1.25rem;
+}
+
+h5 {
+    font-size: 1.15rem;
+}
+
+h6 {
+    font-size: 1.05rem;
+}
+
+p {
+    font-size: 1rem;
+    line-height: 2;
+}
+
+
+.filterpage {
+    margin:10px;
+    border:1px solid #AFAFAF;
+    width:20%;
+}
+
+.column {
+    float: left;
+    padding: 15px;
+    border:1px solid #AFAFAF;
+}
+
+#profile {
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  margin-top: 15px;
+}
+
+#searchbox {
+    margin: 35px;
+    width: 300px;
+}
+
+div.nameandoption {
+    margin-top: 40px;
+}
+
+.projects {
+    border:1px solid #AFAFAF;
+    width:75%;
+
+}
+
+div.separateproject {
+    border:1px solid #AFAFAF;
+    display: inline-block;
+    margin-left: 45px;
+
+}
+
+.themain:{
+    content: "";
+    clear: both;
+    display: table;
+}
+
+
+

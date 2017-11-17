@@ -119,11 +119,67 @@ div.separateproject {
 
 }
 
+div.noProject{
+    text-align: center;
+    display: inline-block;
+    margin-left: 180px;
+    margin-top: 120px;
+}
+
+div.splashPage{
+
+    text-align: center;
+    display: inline-block;
+    margin-left: 275px;
+    margin-top: 180px;
+}
+
+div.overlay{
+    background-image: url('Stevens.jpg');
+    background-size: cover;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+}
+
 .themain:{
     content: "";
     clear: both;
     display: table;
 }
 
+.splashmain{
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.splashButton1{
+    background-color: darkgrey;
+    border: none;
+    color: maroon;
+    padding: 32px 150px;
+    text-align: center;
+    font-size: large;
+}
+
+.splashButton2{
+    background-color: maroon;
+    border: none;
+    color: darkgrey;
+    padding: 32px 125px;
+    text-align: center;
+    font-size: large;
+
+}
+
+.button1{
+    background-color: darkgrey;
+    border: none;
+    color: maroon;
+    padding: 32px 150px;
+    text-align: center;
+    font-size: large;
+}
 
 

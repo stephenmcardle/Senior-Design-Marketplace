@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+	{{>head}}
+</head>
+    
+<body class=" ">
+    <a id="start"></a>
+    {{>nav}}
+    <div class="main-container">
+        <section class="height-100 text-center">
+            <div class="pos-vertical-center">
+                <div class="row">
+                    <div class="col-sm-7 col-md-5">
+                        <h2>Login to continue</h2>
+                        <form action="/auth/login" method="post">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <input type="email" class="form-control" name="email" placeholder="Email Address" />
+                                </div>
+                                <div class="col-sm-12">
+                                    <input type="password" class="form-control" name="password" placeholder="Password" />
+                                </div>
+                                <div class="col-sm-12">
+                                    <input value="Login" class="btn btn--primary type--uppercase" type="submit" />
+                                </div>
+                            </div>
+                            <!--end of row-->
+                        </form>
+                        <span class="type--fine-print block">Dont have an account yet?
+                            <a href="/register">Create account</a>
+                        </span>
+                    </div>
+                </div>
+                <!--end of row-->
+            </div>
+            <!--end of container-->
+            </section>
+    </div>
+
+        
+</body>
+</html>

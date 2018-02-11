@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+    {{>head}}
+</head>
+    
+<body class=" ">
+    <a id="start"></a>
+    {{>nav}}
+
+    <div class="main-container">
+            <section class="text-center height-100">
+                <div class="pos-vertical-center">
+                    <div class="row">
+                        <div class="col-md-5 col-sm-7">
+                            <h2>Create an Account</h2>
+                            <form action="/auth/register" method="post">
+                                <div class="row">
+                                    <div class="col-sm-6 col-xs-12">
+                                        <input type="text" name="firstName" placeholder="First Name" />
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12">
+                                        <input type="text" name="lastName" placeholder="Last Name" />
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <input type="text" name="username" placeholder="Username" />
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <input type="text" name="major" placeholder="Major" />
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <input type="email" name="email" placeholder="Email Address" />
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <input type="password" name="password" placeholder="Password" />
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <button type="submit" class="btn btn--primary type--uppercase">Create Account</button>
+                                    </div>
+                                    <input class="form-control" type="hidden" name="role" value="student" />
+                                    <div class="col-xs-12">
+                                        <span class="type--fine-print">Already have an account?
+                                            <a href="/login">Login</a>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!--end row-->
+                            </form>
+                        </div>
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </section>
+        </div>
+        <!--<div class="loader"></div>-->
+        <a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
+            <i class="stack-interface stack-up-open-big"></i>
+        </a>
+        <script src="js/jquery-3.1.1.min.js"></script>
+        <script src="js/flickity.min.js"></script>
+        <script src="js/easypiechart.min.js"></script>
+        <script src="js/parallax.js"></script>
+        <script src="js/typed.min.js"></script>
+        <script src="js/datepicker.js"></script>
+        <script src="js/isotope.min.js"></script>
+        <script src="js/ytplayer.min.js"></script>
+        <script src="js/lightbox.min.js"></script>
+        <script src="js/granim.min.js"></script>
+        <script src="js/jquery.steps.min.js"></script>
+        <script src="js/countdown.min.js"></script>
+        <script src="js/twitterfetcher.min.js"></script>
+        <script src="js/spectragram.min.js"></script>
+        <script src="js/smooth-scroll.min.js"></script>
+        <script src="js/scripts.js"></script>
+    </body>
+</html>

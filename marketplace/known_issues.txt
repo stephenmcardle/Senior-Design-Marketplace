@@ -1,0 +1,3 @@
+Logout does not work on live site
+
+user's public profile redirects to CDN page, which is not found (on live site)

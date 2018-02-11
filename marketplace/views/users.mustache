@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+	{{>head}}
+</head>
+
+<body>
+	<a id="start"></a>
+	{{>nav}}
+
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3" style="text-align:center;margin-bottom:48px">
+			<h1>Users</h1>
+			<hr />
+
+
+			{{#profiles}}
+			<div class="grey-box">
+
+				<a href="/user/{{username}}">
+					<img src="{{image}}=s240-c" />
+					<h3>{{firstName}} {{lastName}}</h3>
+				</a>
+				<hr />
+				<p>{{description}}</p>
+				
+			</div>
+			{{/profiles}}
+		</div>
+
+		{{>footer-light}}
+
+	</div>
+
+	<script src="/js/jquery-3.1.1.min.js"></script>
+    <script src="/js/typed.min.js"></script>
+    <script src="/js/granim.min.js"></script>
+    <script src="/js/smooth-scroll.min.js"></script>    
+    <script src="/js/isotope.min.js"></script>
+    <script src="/js/scripts.js"></script>
+
+
+	<!-- Turbo library imports: jQuery, Turbo CDN, sample app.js.
+	NOTE: These should be minified in a build script -->
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script type="text/javascript" src="/js/dropzone.js"></script> 
+	<script type="text/javascript" src="https://cdn.turbo360-dev.com/dist/turbo.min.js"></script>
+	<script type="text/javascript" src="/js/app.js"></script>
+
+</body>
+</html>

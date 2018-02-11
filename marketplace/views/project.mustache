@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+	{{>head}}
+</head>
+
+<body>
+    <a id="start"></a>
+	{{>nav}}
+	<section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+                    <article>
+                        <div class="article__title text-center">
+                            <h1 class="h2">{{project.name}}</h1>
+                            <span>Creator: <a href="/user/{{project.username}}">{{project.firstName}} {{project.lastName}}</a></span><br />
+                            <span>{{project.timestamp}}</span><br />
+                            <span>tags: {{project.tags}}</span>
+                        </div>
+                        <!--end article title-->
+                        <div class="article__body">
+                            <img alt="Image" class="img-responsive center-block" src="{{project.image}}" />
+                            <p>
+                                {{project.description}}
+                            </p>
+                        </div>
+                        
+                    </article>
+                    <!--end item-->
+                </div>
+            </div>
+            <!--end of row-->
+        </div>
+        <!--end of container-->
+    </section>
+
+    {{>footer-light}}
+
+    <script src="/js/jquery-3.1.1.min.js"></script>
+    <script src="/js/typed.min.js"></script>
+    <script src="/js/granim.min.js"></script>
+    <script src="/js/smooth-scroll.min.js"></script>    
+    <script src="/js/isotope.min.js"></script>
+    <script src="/js/scripts.js"></script>
+
+
+	<!-- Turbo library imports: jQuery, Turbo CDN, sample app.js.
+	NOTE: These should be minified in a build script -->
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script type="text/javascript" src="/js/dropzone.js"></script> 
+	<script type="text/javascript" src="https://cdn.turbo360-dev.com/dist/turbo.min.js"></script>
+	<script type="text/javascript" src="/js/app.js"></script>
+
+</body>
+</html>

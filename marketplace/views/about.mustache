@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+	{{>head}}
+</head>
+
+<body class=" ">
+    <a id="start"></a>
+	{{>nav}}
+	
+	<div class="main-container">
+            <section class="text-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                            <h2>Welcome to the SIT Senior Design Marketplace</h2>
+                            <p class="lead">
+                                On this website, you will be able to find Senior Design projects and teammates. You must be logged in to a registered account in order to access full project and profile details.
+                            </p>
+                        </div>
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </section>
+
+            {{>footer}}
+
+        </div>
+        <!--<div class="loader"></div>-->
+        <a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
+            <i class="stack-interface stack-up-open-big"></i>
+        </a>
+
+
+
+
+	<!-- Turbo library imports: jQuery, Turbo CDN, sample app.js.
+	NOTE: These should be minified in a build script -->
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script type="text/javascript" src="/js/dropzone.js"></script> 
+	<script type="text/javascript" src="https://cdn.turbo360-dev.com/dist/turbo.min.js"></script>
+	<script type="text/javascript" src="/js/app.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('#blog-submit').click(function(event){
+				event.preventDefault()
+				var post = {
+					title: $('#blog-title').val(),
+					text: $('#blog-text').val()
+				}
+
+				$.ajax({
+					url : '/api/post',
+					type: 'POST',
+					data : post,
+					success: function(data, textStatus, jqXHR){
+						if (data.confirmation != 'success'){
+							alert('Error: ' + data.message)
+							return
+						}
+
+						window.location.href = '/blog'
+					},
+					error: function (jqXHR, textStatus, err){
+						alert('Error: ' + err.message)
+					}
+				})
+			})
+		})
+	</script>
+</body>
+</html>

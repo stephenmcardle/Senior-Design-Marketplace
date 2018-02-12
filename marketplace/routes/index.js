@@ -140,6 +140,7 @@ router.get('/projects', (req, res) => {
 	.then(data => {
 		data.forEach(project => {
 			project.tags = project.tags.join(', ');
+			project.timestamp = project.timestamp.split('T')[0]
 		})
 		res.render('projects', {projects: data})
 	})

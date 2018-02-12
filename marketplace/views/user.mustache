@@ -20,7 +20,7 @@
                                     <span>{{profile.bio}}</span>
                                     <br />
                                     <span><a href="http://{{profile.website}}">{{profile.website}}</a></span>
-                                    <span class="label">Contributor</span>
+                                    <span class="label">{{profile.role}}</span>
                                 </div>
                                 <div class="text-block clearfix text-center">
                                     <ul class="row row--list">
@@ -34,7 +34,7 @@
                                         </li>
                                         <li class="col-sm-4">
                                             <span class="type--fine-print block">Contact:</span>
-                                            <a href="#">{{profile.email}}</a>
+                                            <a href="mailto:{{profile.email}}">{{profile.email}}</a>
                                         </li>
                                 </div>
                                 </ul>

@@ -60,6 +60,14 @@ Controllers connect the server to the Turbo datastore. They work very similarly 
 
 ## Running the Project
 
+If you haven't logged in to Turbo locally (via terminal), run the following command:
+
+```
+$ turbo login
+```
+
+And enter the same credentials you used to create your account on Turbo 360's website.
+
 To test the project locally, run the following command:
 
 ```
@@ -79,3 +87,5 @@ Deployment can take up to a few minutes. When deployment is complete, you will s
 ```
 DEPLOY COMPLETE: http://YOUR_STAGING_URL.turbo360-vertex.com
 ```
+
+The given URL is the staging link for the Turbo project.

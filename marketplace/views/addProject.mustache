@@ -19,9 +19,15 @@
 				<hr />
 
 				<form action="/" method="POST">
-					<input id="project-name" class="form-control" type="text" name="name" placeholder="Name" /><br />
-                    <input id="project-tags" class="form-control" type="text" name="tags" placeholder="Tags" /><br />
-					<textarea id="project-description" class="form-control" name="description" placeholder="Description"></textarea><br />
+					<input id="project-name" class="form-control" type="text" name="name" placeholder="Name" required />
+                    <input id="project-tags" class="form-control" type="text" name="tags" placeholder="Tags" required />
+                    <input id="project-min" class="form-control" type="number" name="minsize" placeholder="Minimum Team Size" required />
+                    <input id="project-max" class="form-control" type="number" name="maxsize" placeholder="Maximum Team Size" required /><br />
+                    <textarea id="project-majors" class="form-control" name="majors" placeholder="Desired Majors"></textarea><br />
+					<textarea id="project-description" class="form-control" name="description" placeholder="Description" required></textarea>
+					
+
+					<br />
                     <label class="btn btn-info">
 					   <input id="project-image" class="file" type="file" accept="image/*" />
                        Upload Image
@@ -66,6 +72,9 @@
 					name: $('#project-name').val(),
 					description: $('#project-description').val(),
                     tags: JSON.stringify(tags),
+                    minsize: $('#project-min').val(),
+                    maxsize: $('#project-max').val(),
+                    majors: $('#project-majors').val(),
                     image: $('#image-url').val(),
                     creatorID: $('#project-creator').val()
 				}

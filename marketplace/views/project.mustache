@@ -16,11 +16,16 @@
                             <h1 class="h2">{{project.name}}</h1>
                             <span>Creator: <a href="/user/{{project.username}}">{{project.firstName}} {{project.lastName}}</a></span><br />
                             <span>{{project.timestamp}}</span><br />
-                            <span>tags: {{project.tags}}</span>
+                            <span>Tags: {{project.tags}}</span><br />
                         </div>
                         <!--end article title-->
                         <div class="article__body">
                             <img alt="Image" class="img-responsive center-block" src="{{project.image}}" />
+                            <div class="text-center">
+                                <span>Desired Majors: {{project.majors}}</span><br />
+                                <span>Min Team Size: {{project.minsize}}</span><br />
+                                <span>Max Team Size: {{project.maxsize}}</span><br />
+                            </div>
                             <p>
                                 {{project.description}}
                             </p>

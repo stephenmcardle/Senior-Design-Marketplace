@@ -38,6 +38,7 @@ router.get('/:resource', (req, res) => {
 })
 
 router.get('/:resource/:id', (req, res) => {
+	console.log('in get')
 	const resource = req.params.resource
 	const controller = controllers[resource] // check if valid resource
 
@@ -66,6 +67,7 @@ router.get('/:resource/:id', (req, res) => {
 
 // create entity
 router.post('/:resource', (req, res) => {
+	console.log('in post')
 	const resource = req.params.resource
 	const controller = controllers[resource] // check if valid resource
 
@@ -75,6 +77,10 @@ router.post('/:resource', (req, res) => {
 			message: 'Invalid resource: ' + resource + '. Current resources: ' + Object.keys(controllers).join(', ')
 		})
 		return
+	}
+
+	if (resource === 'project') {
+		req.body.valid = 'false';
 	}
 
 	controller.post(req.body)
@@ -94,6 +100,7 @@ router.post('/:resource', (req, res) => {
 
 // update entity
 router.put('/:resource/:id', (req, res) => {
+	console.log('in put')
 	const resource = req.params.resource
 	const controller = controllers[resource] // check if valid resource
 
@@ -104,6 +111,8 @@ router.put('/:resource/:id', (req, res) => {
 		})
 		return
 	}
+
+	console.log(req.body)
 
 	controller.put(req.params.id, req.body)
 	.then(data => {
@@ -118,6 +127,25 @@ router.put('/:resource/:id', (req, res) => {
 			message: err.message
 		})
 	})
+})
+
+router.post('/project/validate/:id', (req, res) => {
+	const controller = controllers['project']
+
+	controller.put(req.params.id, {valid: 'true'})
+	.then(data => {
+		res.json({
+			confirmation: 'success',
+			data: data
+		})
+	})
+	.catch(err => {
+		res.json({
+			confirmation: 'fail',
+			message: err.message
+		})
+	})
+
 })
 
 

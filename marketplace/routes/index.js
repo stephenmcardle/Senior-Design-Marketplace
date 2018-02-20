@@ -22,6 +22,9 @@ const staticPages = {
 // the key value proposition as well as guide the visitor to
 // a prominent call-to-action registration form:
 router.get('/', (req, res) => {
+	req.query = {
+		valid: 'true'
+	}
 	controllers.project.get(req.query)
 	.then(data => {
 		data = data.slice(0,4)
@@ -47,9 +50,25 @@ router.get('/dashboard', (req, res) => {
 		return
 	}
 
+
+	if (req.vertexSession.user.role === 'admin') { // user is admin, redirect to admin dashboard
+		res.redirect('/admin/dashboard')
+	}
+
 	controllers.user.getById(req.vertexSession.user.id)
-	.then(data => {
-		res.render('dashboard', {user: data}) // user data passed in as "user" key for Mustache rendering
+	.then(user => {
+		if (user.role === 'admin') {
+			controllers.project.get({ valid: 'false' })
+			.then(projects => {
+				const data = {
+					user: user,
+					projects: projects
+				}
+				res.render('admin/dashboard', data)
+			})
+		} else {
+			res.render('dashboard', {user: user}) // user data passed in as "user" key for Mustache rendering
+		}
 	})
 	.catch(err => {
 		res.redirect('/error?message=' + err.message)
@@ -136,6 +155,11 @@ router.get('/projects', (req, res) => {
 		return
 	}
 
+	req.query = {
+		valid: 'true'
+	}
+
+
 	controllers.project.get(req.query)
 	.then(data => {
 		data.forEach(project => {
@@ -167,7 +191,7 @@ router.get('/project/:slug', (req, res) => {
 			return
 		}
 
-		const project = data[0]	
+		const project = data[0]
 		project.tags = project.tags.join(', ')
 		project.timestamp = project.timestamp.split('T')[0]
 		controllers.user.getById(project.creatorID)

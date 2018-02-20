@@ -38,7 +38,6 @@ router.get('/:resource', (req, res) => {
 })
 
 router.get('/:resource/:id', (req, res) => {
-	console.log('in get')
 	const resource = req.params.resource
 	const controller = controllers[resource] // check if valid resource
 
@@ -67,7 +66,6 @@ router.get('/:resource/:id', (req, res) => {
 
 // create entity
 router.post('/:resource', (req, res) => {
-	console.log('in post')
 	const resource = req.params.resource
 	const controller = controllers[resource] // check if valid resource
 
@@ -100,7 +98,6 @@ router.post('/:resource', (req, res) => {
 
 // update entity
 router.put('/:resource/:id', (req, res) => {
-	console.log('in put')
 	const resource = req.params.resource
 	const controller = controllers[resource] // check if valid resource
 

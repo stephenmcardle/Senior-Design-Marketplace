@@ -1,9 +1,0 @@
-Logout does not work on live site
-
-Login does not work (after logging out)- incorrect password error
-
-user's public profile redirects to CDN page, which is not found (on live site)
-
-Projects on live site takes you to dashboard
-
-Users on live site takes you to dashboard

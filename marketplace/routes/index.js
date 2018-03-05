@@ -50,15 +50,10 @@ router.get('/dashboard', (req, res) => {
 		return
 	}
 
-
-	if (req.vertexSession.user.role === 'admin') { // user is admin, redirect to admin dashboard
-		res.redirect('/admin/dashboard')
-	}
-
 	controllers.user.getById(req.vertexSession.user.id)
 	.then(user => {
 		if (user.role === 'admin') {
-			controllers.project.get({ valid: 'false' })
+			controllers.project.get({ status: 'pending' })
 			.then(projects => {
 				const data = {
 					user: user,
@@ -156,7 +151,7 @@ router.get('/projects', (req, res) => {
 	}
 
 	req.query = {
-		valid: 'true'
+		status: 'approved'
 	}
 
 

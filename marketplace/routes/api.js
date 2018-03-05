@@ -78,7 +78,7 @@ router.post('/:resource', (req, res) => {
 	}
 
 	if (resource === 'project') {
-		req.body.valid = 'false';
+		req.body.status = 'pending';
 	}
 
 	controller.post(req.body)
@@ -129,7 +129,26 @@ router.put('/:resource/:id', (req, res) => {
 router.post('/project/validate/:id', (req, res) => {
 	const controller = controllers['project']
 
-	controller.put(req.params.id, {valid: 'true'})
+	controller.put(req.params.id, {status: 'approved', department: req.body.department})
+	.then(data => {
+		res.json({
+			confirmation: 'success',
+			data: data
+		})
+	})
+	.catch(err => {
+		res.json({
+			confirmation: 'fail',
+			message: err.message
+		})
+	})
+
+})
+
+router.post('/project/deny/:id', (req, res) => {
+	const controller = controllers['project']
+
+	controller.put(req.params.id, {status: 'denied'})
 	.then(data => {
 		res.json({
 			confirmation: 'success',

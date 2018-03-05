@@ -21,12 +21,6 @@
                                     		<img id="avatar-img" src={{user.image}} class="image--md" />
                                     	</label>
                                     	<input id="image-url" type="text" name="image" style="display:none" />
-                                    	<input value="{{user.email}}" name="email" type="hidden" />
-										<input value="{{user.password}}" name="password" type="hidden" />
-										<input value="{{user.description}}" name="description" type="hidden" />
-										<textarea name="bio" placeholder="Biography" style="display:none">{{user.bio}}</textarea>
-										<input type="hidden" name="id" value="{{user.id}}" />
-                                        <input class="form-control" type="hidden" name="role" value="{{user.role}}" />
 									</form>
                                     <span class="h5">{{user.firstName}} {{user.lastName}}</span>
                                     <span>{{user.role}} account</span>
@@ -95,9 +89,9 @@
                         <div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
                             <div class="masonry masonry-blog-list">
                                 <div class="masonry__container">
-                                    <h1 class="text-center">Projects</h1>
-                                    <hr />
+                                    <h1 class="text-center">Pending Projects</h1>
                                     {{#projects}}
+                                    <hr />
                                     <article class="">
                                         <div class="article__title text-center">
                                             <a href="/project/{{slug}}">
@@ -106,7 +100,10 @@
                                             <span>{{timestamp}}</span><br />
                                             <span>
                                                 tags: {{tags}}
-                                            </span>
+                                            </span><br />
+                                            <span>Desired Majors: {{majors}}</span><br />
+                                            <span>Min Team Size: {{minsize}}</span><br />
+                                            <span>Max Team Size: {{maxsize}}</span><br />
                                         </div>
                                         <!--end article title-->
                                         <div class="article__body">
@@ -119,29 +116,35 @@
                                             <a class="pull-right" href="/project/{{slug}}">View Project &raquo;</a>
                                         </div>
                                         <form method="post" action="/api/project/validate/{{id}}">
-                                            <input type="hidden" name="valid" value="true" />
+                                            <div class="form-group">
+                                              <label for="sel1">Select a Department:</label>
+                                              <select class="form-control" id="department-select" name="department" required>
+                                                <option value="" disabled selected>Select a Department</option>
+                                                <option value="Biomedical Engineering">Biomedical Engineering</option>
+                                                <option value="Business & Technology">Business &amp; Technology</option>
+                                                <option value="Chemical Engineering">Chemical Engineering</option>
+                                                <option value="Civil Engineering">Civil Engineering</option>
+                                                <option value="Computer Engineering">Computer Engineering</option>
+                                                <option value="Computer Science">Computer Science</option>
+                                                <option value="Electrical Engineering">Electrical Engineering</option>
+                                                <option value="Engineering Management">Engineering Management</option>
+                                                <option value="Environmental Engineering">Environmental Engineering</option>
+                                                <option value="Information Systems">Information Systems</option>
+                                                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                                <option value="Naval Engineering">Naval Engineering</option>
+                                                <option value="Systems Engineering">Systems Engineering</option>
+                                              </select>
+                                            </div>
                                             <button type="submit" class="btn btn--primary type--uppercase">Approve Project</button>
                                         </form>
+                                        <form method="post" action="/api/project/deny/{{id}}">
+                                            <button type="submit" class="btn btn--danger type--uppercase">Deny Project</button>
+                                        </form> 
                                     </article>
                                     {{/projects}}
+
                                     
-                                <!--end of masonry container-->
-                                <div class="pagination">
-                                    <a class="pagination__prev" href="#" title="Previous Page">&laquo;</a>
-                                    <ol>
-                                        <li>
-                                            <a href="#">1</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">2</a>
-                                        </li>
-                                        <li class="pagination__current">3</li>
-                                        <li>
-                                            <a href="#">4</a>
-                                        </li>
-                                    </ol>
-                                    <a class="pagination__next" href="#" title="Next Page">&raquo;</a>
-                                </div>
+                                
                             </div>
                             <!--end masonry-->
                         </div>

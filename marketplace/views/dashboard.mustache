@@ -21,12 +21,6 @@
                                     		<img id="avatar-img" src={{user.image}} class="image--md" />
                                     	</label>
                                     	<input id="image-url" type="text" name="image" style="display:none" />
-                                    	<input value="{{user.email}}" name="email" type="hidden" />
-										<input value="{{user.password}}" name="password" type="hidden" />
-										<input value="{{user.description}}" name="description" type="hidden" />
-										<textarea name="bio" placeholder="Biography" style="display:none">{{user.bio}}</textarea>
-										<input type="hidden" name="id" value="{{user.id}}" />
-                                        <input class="form-control" type="hidden" name="role" value="{{user.role}}" />
 									</form>
                                     <span class="h5">{{user.firstName}} {{user.lastName}}</span>
                                     <span>{{user.role}} account</span>
@@ -71,8 +65,6 @@
                                                 <textarea rows="4" name="bio" placeholder="Biography">{{user.bio}}</textarea>
                                             </div>
                                             <input class="form-control" type="hidden" name="id" value="{{user.id}}" />
-                                            <input class="form-control" type="hidden" name="role" value="{{user.role}}" />
-                                            <input type="hidden" name="password" value="{{user.password}}" />
                                             <div class="col-md-3 col-sm-4">
                                                 <button type="submit" class="btn btn--primary type--uppercase">Save Profile</button>
                                             </div>
@@ -80,107 +72,8 @@
                                         </div>
                                     </form>
                                 </div>
-                                <div id="account-notifications" class="hidden account-tab">
-                                    <h4>Email Notifications</h4>
-                                    <p>Select the frequency with which you'd like to recieve product summary emails:</p>
-                                    <form>
-                                        <div class="row">
-                                            <div class="boxed bg--secondary boxed--border">
-                                                <div class="col-xs-4 text-center">
-                                                    <div class="input-radio">
-                                                        <span>Never</span>
-                                                        <input type="radio" name="frequency" value="never" class="validate-required" />
-                                                        <label></label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-4 text-center">
-                                                    <div class="input-radio checked">
-                                                        <span>Weekly</span>
-                                                        <input type="radio" name="frequency" value="weekly" class="validate-required" />
-                                                        <label></label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-4 text-center">
-                                                    <div class="input-radio">
-                                                        <span>Monthly</span>
-                                                        <input type="radio" name="frequency" value="monthly" class="validate-required" />
-                                                        <label></label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4 col-sm-5">
-                                                <button type="submit" class="btn btn--primary type--uppercase">Save Preferences</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div id="account-billing" class="hidden account-tab">
-                                    <h4>Billing Details</h4>
-                                    <div class="boxed boxed--border bg--secondary">
-                                        <h5>Payment Methods</h5>
-                                        <hr>
-                                        <form>
-                                            <div class="row">
-                                                <ul>
-                                                    <li>
-                                                        <div class="col-sm-6">
-                                                            <p>
-                                                                <i class="material-icons">credit_card</i>
-                                                                <span> Mastercard ending in
-                                                                    <strong>4722</strong>
-                                                                </span>
-                                                            </p>
-                                                        </div>
-                                                        <div class="col-sm-3 text-right text-left-xs">
-                                                            <button type="submit" class="btn bg--error">Remove</button>
-                                                        </div>
-                                                        <div class="col-sm-3 text-right text-left-xs">
-                                                            <button type="submit" class="btn">Edit</button>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <hr>
-                                            <button type="submit" class="btn">Add New Method</button>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div id="account-password" class="hidden account-tab">
-                                    <h4>Password</h4>
-                                    <p>Passwords must be at least 6 characters in length.</p>
-                                    <form>
-                                        <div class="row">
-                                            <div class="col-xs-12">
-                                                <label>Old Password:</label>
-                                                <input type="password" name="old-password" />
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <label>New Password:</label>
-                                                <input type="password" name="new-password" />
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <label>Retype New Password:</label>
-                                                <input type="password" name="new-password-confirm" />
-                                            </div>
-                                            <div class="col-md-3 col-sm-4">
-                                                <button type="submit" class="btn btn--primary type--uppercase">Save Password</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div id="account-delete" class="hidden account-tab">
-                                    <h4>Delete Account</h4>
-                                    <p>Permanently remove your account using the button below. Warning, this action is permanent.</p>
-                                    <form>
-                                        <button type="submit" class="btn bg--error type--uppercase">Delete Account</button>
-                                    </form>
-                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!--end of row-->
-                </div>
-                <!--end of container-->
             </section>
 
     	{{>footer-light}}

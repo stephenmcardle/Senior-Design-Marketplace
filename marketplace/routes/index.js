@@ -64,11 +64,15 @@ router.get('/dashboard', (req, res) => {
 		} else if (user.role === 'instructor') {
 			controllers.project.get({ department: user.major })
 			.then(projects => {
-				const data = {
-					user: user,
-					projects: projects
-				}
-				res.render('instructor/dashboard', data)
+				controllers.user.get({ major: user.major, role: 'student'})
+				.then(students => {
+					const data = {
+						user: user,
+						projects: projects,
+						students: students
+						}
+					res.render('instructor/dashboard', data)
+				})
 			})
 		} else {
 			res.render('dashboard', {user: user}) // user data passed in as "user" key for Mustache rendering

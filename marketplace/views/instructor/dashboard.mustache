@@ -129,6 +129,25 @@
                 </div>
                 <!--end of container-->
             </section>
+
+            <div class="col-md-6 col-md-offset-3" style="text-align:center;margin-bottom:48px">
+                <h1>Your Students</h1>
+                <hr />
+
+
+                {{#students}}
+                <div class="grey-box">
+
+                    <a href="/user/{{username}}">
+                        <img src="{{image}}=s240-c" />
+                        <h3>{{firstName}} {{lastName}}</h3>
+                    </a>
+                    <hr />
+                    <p>{{description}}</p>
+                    
+                </div>
+                {{/students}}
+            </div>
     
 
     	{{>footer-light}}

@@ -23,7 +23,7 @@ const staticPages = {
 // a prominent call-to-action registration form:
 router.get('/', (req, res) => {
 	req.query = {
-		valid: 'true'
+		status: 'approved'
 	}
 	controllers.project.get(req.query)
 	.then(data => {

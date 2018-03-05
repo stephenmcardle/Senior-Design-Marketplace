@@ -61,6 +61,15 @@ router.get('/dashboard', (req, res) => {
 				}
 				res.render('admin/dashboard', data)
 			})
+		} else if (user.role === 'instructor') {
+			controllers.project.get({ department: user.major })
+			.then(projects => {
+				const data = {
+					user: user,
+					projects: projects
+				}
+				res.render('instructor/dashboard', data)
+			})
 		} else {
 			res.render('dashboard', {user: user}) // user data passed in as "user" key for Mustache rendering
 		}

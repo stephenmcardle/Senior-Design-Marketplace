@@ -66,7 +66,6 @@ router.get('/dashboard', (req, res) => {
 				})
 			})
 		} else if (user.role === 'instructor') {
-			console.log(user.role);
 			controllers.project.get({ department: user.major })
 			.then(projects => {
 				controllers.user.get({ major: user.major, role: 'student'})
@@ -80,8 +79,12 @@ router.get('/dashboard', (req, res) => {
 				})
 			})
 		} else {
+<<<<<<< HEAD
 			console.log(user.role);
 			controllers.projectApp.get({theUserID:user.id})
+=======
+			controllers.projectApp.get({JoinerId:user.firstName})
+>>>>>>> c5026edd02d463443bf857f63374739042456329
 				.then(projectApp => {
 					console.log(projectApp);
 					res.render('student/dashboard', {user: user,ourapps:projectApp})

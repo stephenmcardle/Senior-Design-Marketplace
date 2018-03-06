@@ -164,5 +164,24 @@ router.post('/project/deny/:id', (req, res) => {
 
 })
 
+router.post('/user/validate/:id', (req, res) => {
+	const controller = controllers['projectApp']
+	controller.put(req.params.id, {valid: 'true'})
+	.then(data => {
+		res.json({
+			confirmation: 'success',
+			data: data
+		})
+	})
+	.catch(err => {
+		console.log("beer2")
+		res.json({
+			confirmation: 'fail',
+			message: err.message
+		})
+	})
+
+})
+
 
 module.exports = router

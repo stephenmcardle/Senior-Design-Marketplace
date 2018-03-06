@@ -55,13 +55,18 @@ router.get('/dashboard', (req, res) => {
 		if (user.role === 'admin') {
 			controllers.project.get({ status: 'pending' })
 			.then(projects => {
-				const data = {
-					user: user,
-					projects: projects
-				}
-				res.render('admin/dashboard', data)
+				controllers.projectApp.get({valid:'false'})
+				.then(projectApp => {
+					const data = {
+						user: user,
+						projects: projects,
+						projectApp:projectApp
+					}
+					res.render('admin/dashboard', data)
+				})
 			})
 		} else if (user.role === 'instructor') {
+			console.log(user.role);
 			controllers.project.get({ department: user.major })
 			.then(projects => {
 				controllers.user.get({ major: user.major, role: 'student'})
@@ -75,7 +80,11 @@ router.get('/dashboard', (req, res) => {
 				})
 			})
 		} else {
-			res.render('dashboard', {user: user}) // user data passed in as "user" key for Mustache rendering
+			console.log(user.role);
+			controllers.projectApp.get({JoinerId:user.firstName})
+				.then(projectApp => {
+					res.render('dashboard', {user: user,ourapps:projectApp})
+				}) // user data passed in as "user" key for Mustache rendering
 		}
 	})
 	.catch(err => {
@@ -204,10 +213,13 @@ router.get('/project/:slug', (req, res) => {
 		project.timestamp = project.timestamp.split('T')[0]
 		controllers.user.getById(project.creatorID)
 		.then(user => {
+			controllers.user.getById(req.vertexSession.user.id)
+			.then(ouruser => {
 			project.firstName = user.firstName
-			project.lastName = user.lastName
-			project.username = user.username
-			res.render('project', {project: project})
+				project.lastName = user.lastName
+				project.username = user.username
+				res.render('project', {project: project,user:ouruser})
+			})
 		})
 		.catch(err => {
 			res.redirect('/error?message=' + err.message)

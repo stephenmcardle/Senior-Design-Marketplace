@@ -75,6 +75,21 @@
                             </div>
                         </div>
             </section>
+            <section class="space--sm">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+                            <div class="masonry masonry-blog-list">
+                                <div class="masonry__container">
+                                    <h1 class="text-center">Our Applications</h1>
+                                    {{#ourapps}}
+                                    <hr />
+                                    <article class="">
+                                        <div class="article__title text-center">
+                                            <h1>{{project_name}}</h1>
+                                        </div>
+                                    </article>
+                                    {{/ourapps}}
 
     	{{>footer-light}}
 	</div>

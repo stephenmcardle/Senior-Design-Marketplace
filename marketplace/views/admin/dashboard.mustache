@@ -142,8 +142,25 @@
                                         </form> 
                                     </article>
                                     {{/projects}}
-
-                                    
+                                     <h1 class="text-center">Student Applications</h1>
+                                    <hr />
+                                    {{#projectApp}}
+                                    <article class="">
+                                        <div class="article__title text-center">
+                                                <h2>Student:<a href=/user/{{user.username}}>{{JoinerID}}</a> is applying for {{project_name}}</h2>
+                                        </div>
+                                        <!--end article title-->
+                                        <div class="article__body">
+                                            <p class="text-center">
+                                                Reason:{{reason}} <br/> Skills:{{skills}}
+                                            </p>>
+                                        </div>
+                                        <form method="post" action="/api/user/validate/{{id}}">
+                                            <input type="hidden" name="valid" value="true" />
+                                            <button type="submit" class="btn btn--primary type--uppercase">Approve Project</button>
+                                        </form>
+                                    </article>
+                                    {{/projectApp}}
                                 
                             </div>
                             <!--end masonry-->

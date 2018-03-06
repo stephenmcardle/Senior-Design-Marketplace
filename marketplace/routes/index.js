@@ -83,7 +83,7 @@ router.get('/dashboard', (req, res) => {
 			console.log(user.role);
 			controllers.projectApp.get({JoinerId:user.firstName})
 				.then(projectApp => {
-					res.render('dashboard', {user: user,ourapps:projectApp})
+					res.render('student/dashboard', {user: user,ourapps:projectApp})
 				}) // user data passed in as "user" key for Mustache rendering
 		}
 	})

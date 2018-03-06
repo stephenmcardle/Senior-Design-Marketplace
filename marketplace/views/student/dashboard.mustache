@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+    {{>head}}
+</head>
+
+<body>
+    <a id="start"></a>
+    {{>nav}}
+
+    <div class="main-container">
+            <section class="bg--secondary space--sm">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="boxed boxed--lg boxed--border">
+                                <div class="text-block text-center">
+                                    <form id="image-form" action="/auth/update" method="post">
+                                        <label for="user-image">
+                                            <input id="user-image" class="file" type="file" accept="image/*" />
+                                            <img id="avatar-img" src={{user.image}} class="image--md" />
+                                        </label>
+                                        <input id="image-url" type="text" name="image" style="display:none" />
+                                    </form>
+                                    <span class="h5">{{user.firstName}} {{user.lastName}}</span>
+                                    <span>{{user.role}} account</span>
+                                    <span class="label">{{user.role}}</span>
+                                </div>
+                                <hr>
+                                
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="boxed boxed--lg boxed--border">
+                                <div id="account-profile" class="account-tab">
+                                    <h4>Profile</h4>
+                                    <form action="/auth/update" method="post">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <label>First Name:</label>
+                                                <input type="text" name="firstName" value="{{user.firstName}}" />
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label>Last Name:</label>
+                                                <input type="text" name="lastName" value="{{user.lastName}}" />
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <label>Email Address:</label>
+                                                <input type="email" name="email" value="{{user.email}}" />
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <label>Location:</label>
+                                                <input type="text" name="location" value="{{user.location}}" placeholder="Location" />
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <label>Website:</label>
+                                                <input type="text" name="website" value="{{user.website}}" placeholder="www.example.com" />
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <label>Description:</label>
+                                                <input type="text" name="description" value="{{user.description}}" placeholder="Description" />
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <label>Bio:</label>
+                                                <textarea rows="4" name="bio" placeholder="Biography">{{user.bio}}</textarea>
+                                            </div>
+                                            <input class="form-control" type="hidden" name="id" value="{{user.id}}" />
+                                            <div class="col-md-3 col-sm-4">
+                                                <button type="submit" class="btn btn--primary type--uppercase">Save Profile</button>
+                                            </div>
+                                            <a class="btn btn-danger type--uppercase" style="font-family:'Open Sans', 'Helvetica', 'Arial', sans-serif" href="/auth/logout">Log Out</a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+            </section>
+            <section class="space--sm">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+                            <div class="masonry masonry-blog-list">
+                                <div class="masonry__container">
+                                    <h1 class="text-center">Our Applications</h1>
+                                    {{#ourapps}}
+                                    <hr />
+                                    <article class="">
+                                        <div class="article__title text-center">
+                                            <h1>{{project_name}}</h1>
+                                        </div>
+                                    </article>
+                                    {{/ourapps}}
+
+        {{>footer-light}}
+    </div>
+
+
+
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/typed.min.js"></script>
+    <script src="js/granim.min.js"></script>
+    <script src="js/smooth-scroll.min.js"></script>    
+    <script src="js/isotope.min.js"></script>
+    <script src="js/scripts.js"></script>
+
+  <!-- Turbo library imports: jQuery, Turbo CDN, sample app.js.
+  NOTE: These should be minified in a build script -->
+  <script type="text/javascript" src="/js/jquery.js"></script>
+
+  <!-- For file uploading. Remove if file upload not necessry -->
+  <script type="text/javascript" src="/js/dropzone.js"></script> 
+
+  <!-- Turbo CDN. Better to use CDN than to store locally. -->
+  <script type="text/javascript" src="https://cdn.turbo360-dev.com/dist/turbo.min.js"></script>
+
+  <!-- Your app specific code -->
+  <script type="text/javascript" src="/js/app.js"></script>
+
+
+
+  <script type="text/javascript">
+    $(function(){
+        var turbo = Turbo({
+            site_id: '5a511633b06cbe0014f4b6eb'
+        })
+        $("input[type='image']").click(function() {
+            $("input[id='user-image']").click();
+        });
+        $('#user-image').click(function(event){
+                event.preventDefault()
+                $('#avatar-img').attr("src", "/images/spinner.gif")
+                //$('#user-submit').prop('disabled', true);
+                turbo.uploadFile(function(err, data){
+                    if (err) {
+                        alert('Error: ' + err.message)
+                        return
+                    }
+                    $('#image-url').attr("value", data.result.url)
+                    //$('#user-submit').prop('disabled', false);
+                    $('#image-form').submit()
+                    console.log('Submitted')
+                })
+            })
+        })
+  </script>
+
+</body>
+</html>

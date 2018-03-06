@@ -81,8 +81,9 @@ router.get('/dashboard', (req, res) => {
 			})
 		} else {
 			console.log(user.role);
-			controllers.projectApp.get({JoinerId:user.firstName})
+			controllers.projectApp.get({theUserID:user.id})
 				.then(projectApp => {
+					console.log(projectApp);
 					res.render('student/dashboard', {user: user,ourapps:projectApp})
 				}) // user data passed in as "user" key for Mustache rendering
 		}

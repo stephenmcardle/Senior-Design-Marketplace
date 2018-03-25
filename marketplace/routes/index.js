@@ -66,6 +66,7 @@ router.get('/dashboard', (req, res) => {
 				})
 			})
 		} else if (user.role === 'instructor') {
+			console.log(user.role);
 			controllers.project.get({ department: user.major })
 			.then(projects => {
 				controllers.user.get({ major: user.major, role: 'student'})
@@ -79,9 +80,14 @@ router.get('/dashboard', (req, res) => {
 				})
 			})
 		} else {
-			controllers.projectApp.get({JoinerId:user.firstName})
+			console.log(user.role);
+			controllers.projectApp.get({theUserID:user.id,valid:false})
 				.then(projectApp => {
-					res.render('student/dashboard', {user: user,ourapps:projectApp})
+					controllers.projectApp.get({theUserID:user.id,valid:true})
+						.then(projectAppTrue => {
+							console.log(projectAppTrue);
+							res.render('student/dashboard', {user: user,ourapps:projectApp,ourappstrue:projectAppTrue})
+						})
 				}) // user data passed in as "user" key for Mustache rendering
 		}
 	})

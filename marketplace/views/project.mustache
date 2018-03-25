@@ -39,6 +39,7 @@
                                 <input id="joiner-name" class="form-control" type="hidden" name="creatorID" value="{{user.firstName}} {{user.lastName}}" />
                                 <input id="joiner_username" class="form-control" type="hidden" name="creatorID" value="{{user.username}}" />
                                 <input id="project-name" class="form-control" type="hidden" name="creatorID" value="{{project.name}}" />
+                                <input id="theUser" class="form-control" type="hidden" name="creatorID" value="{{user.id}}" />
                                 <button id="project-submit" type="submit" class="btn btn--sm btn--primary type--uppercase">Submit</button>
                             </form>
                         </div>      
@@ -80,6 +81,7 @@
                     JoinerID: $('#joiner-name').val(),
                     project_name: $('#project-name').val(),
                     id: $('#joiner_username').val(),
+                    theUserID: $('#theUser').val(),
                     valid:'false'
                 }
 

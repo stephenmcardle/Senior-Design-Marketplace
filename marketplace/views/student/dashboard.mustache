@@ -82,6 +82,7 @@
                             <div class="masonry masonry-blog-list">
                                 <div class="masonry__container">
                                     <h1 class="text-center">Our Applications</h1>
+                                    <h2>Pending Applications</h2>
                                     {{#ourapps}}
                                     <hr />
                                     <article class="">
@@ -90,6 +91,16 @@
                                         </div>
                                     </article>
                                     {{/ourapps}}
+                                    <h2>Accepted Applications</h2>
+                                    {{#ourappstrue}}
+                                    <hr />
+                                    <article class="">
+                                        <div class="article__title text-center">
+                                            <h1>{{project_name}}</h1>
+                                        </div>
+                                    </article>
+                                    {{/ourappstrue}}
+
 
         {{>footer-light}}
     </div>

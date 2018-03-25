@@ -61,6 +61,7 @@ module.exports = {
 
 	put: (id, params) => {
 		return new Promise((resolve, reject) => {
+			params.tags = JSON.parse(params.tags);
 			turbo.updateEntity(resource, id, params)
 			.then(data => {
 				resolve(data)

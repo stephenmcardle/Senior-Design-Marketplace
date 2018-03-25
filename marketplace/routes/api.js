@@ -109,8 +109,6 @@ router.put('/:resource/:id', (req, res) => {
 		return
 	}
 
-	console.log(req.body)
-
 	controller.put(req.params.id, req.body)
 	.then(data => {
 		res.json({

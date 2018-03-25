@@ -184,6 +184,7 @@ router.get('/projects', (req, res) => {
 	controllers.project.get(req.query)
 	.then(data => {
 		data.forEach(project => {
+			console.log(project.tags)
 			project.tags = project.tags.join(', ');
 			project.timestamp = project.timestamp.split('T')[0]
 		})
@@ -213,6 +214,7 @@ router.get('/project/:slug', (req, res) => {
 		}
 
 		const project = data[0]
+		console.log(project.tags)
 		project.tags = project.tags.join(', ')
 		project.timestamp = project.timestamp.split('T')[0]
 		controllers.user.getById(project.creatorID)
@@ -229,6 +231,48 @@ router.get('/project/:slug', (req, res) => {
 			res.redirect('/error?message=' + err.message)
 		})
 
+	})
+	.catch(err => {
+		res.redirect('/error?message=' + err.message)
+	})
+})
+
+
+router.get('/editProject/:slug', (req, res) => {
+	if (req.vertexSession == null){ // user not logged in, redirect to login page:
+		res.redirect('/login')
+		return
+	}
+
+	if (req.vertexSession.user == null){ // user not logged in, redirect to login page:
+		res.redirect('/login')
+		return
+	}
+
+	controllers.user.getById(req.vertexSession.user.id)
+	.then(user => {
+		if (user.role === 'instructor') {
+			controllers.project.get({slug:req.params.slug})
+			.then(data => {
+				if (data.length == 0){ // not found, throw error
+					throw new Error('Listing not found.')
+					return
+				}
+				const project = data[0]
+				if (project.department === user.major) {
+					project.tags = project.tags.join(', ')
+					project.timestamp = project.timestamp.split('T')[0]
+					res.render('instructor/editProject', project)
+				} else {
+					res.redirect('/error?message=Not%20Authorized')
+				}
+			})
+			.catch(err => {
+				res.redirect('/error?message=' + err.message)
+			})
+		} else {
+			res.redirect('/error?message=Not%20Authorized')
+		}
 	})
 	.catch(err => {
 		res.redirect('/error?message=' + err.message)

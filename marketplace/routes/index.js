@@ -1,6 +1,7 @@
 const vertex = require('vertex360')({site_id: process.env.TURBO_APP_ID})
 const router = vertex.router()
 const controllers = require('../controllers')
+const csv = require('../util').createFile
 
 const USER_NOT_LOGGED_IN = 'User%20Not%20Logged%20In'
 
@@ -292,11 +293,36 @@ router.get('/addProject', (req, res) => {
 
 })
 
-
-
-
 router.get('/about', (req, res) => {
 	res.render('about', null);
+})
+
+router.get('/export', (req, res) => {
+	controllers.user.getById(req.vertexSession.user.id)
+	.then(user => {
+		if (user.role === 'instructor') {
+			csv(user.major)
+			.then(() => {
+				res.sendFile('download.csv', { root: './'});
+			})
+			.catch(err => {
+				res.redirect('/error?message=' + err.message)
+			})
+		} else if (user.role === 'admin') {
+			csv('admin')
+			.then(() => {
+				res.sendFile('download.csv', { root: '../'});
+			})
+			.catch(err => {
+				res.redirect('/error?message=' + err.message)
+			})
+		} else {
+			res.redirect('/error?message=Not%20Authorized');	
+		}
+	})
+	.catch(err => {
+		res.redirect('/error?message=' + err.message)
+	})	
 })
 
 

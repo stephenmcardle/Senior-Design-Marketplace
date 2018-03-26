@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "bluebird": "^3.5.1",
+    "json-2-csv": "^2.2.0",
     "nodemon": "latest",
     "turbo360": "latest",
     "vertex360": "latest"

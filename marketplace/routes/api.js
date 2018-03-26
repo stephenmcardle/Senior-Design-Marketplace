@@ -102,8 +102,6 @@ router.put('/:resource/:id', (req, res) => {
 	const resource = req.params.resource
 	const controller = controllers[resource] // check if valid resource
 
-	console.log('made it to put')
-
 	if (controller == null){
 		res.json({
 			confirmation: 'fail',
@@ -111,9 +109,6 @@ router.put('/:resource/:id', (req, res) => {
 		})
 		return
 	}
-
-	console.log(req.body)
-
 	controller.put(req.params.id, req.body)
 	.then(data => {
 		res.json({
@@ -133,8 +128,6 @@ router.post('/editProject/:id', (req, res) => {
 	const resource = 'project'
 	const controller = controllers[resource] // check if valid resource
 
-	console.log('made it to put')
-
 	if (controller == null){
 		res.json({
 			confirmation: 'fail',
@@ -142,9 +135,6 @@ router.post('/editProject/:id', (req, res) => {
 		})
 		return
 	}
-
-	console.log(req.body)
-
 	controller.put(req.params.id, req.body)
 	.then(data => {
 		res.json({
@@ -163,9 +153,6 @@ router.post('/editProject/:id', (req, res) => {
 router.post('/project/validate/:id', (req, res) => {
 	const controller = controllers['project']
 
-	console.log('in validate')
-	console.log(req.body)
-	console.log(req.params.id)
 	controller.put(req.params.id, {status: 'approved', department: req.body.department})
 	.then(data => {
 		res.json({
@@ -174,7 +161,6 @@ router.post('/project/validate/:id', (req, res) => {
 		})
 	})
 	.catch(err => {
-		console.log(err)
 		res.json({
 			confirmation: 'fail',
 			message: err.message
@@ -212,7 +198,6 @@ router.post('/user/validate/:id', (req, res) => {
 		})
 	})
 	.catch(err => {
-		console.log("beer2")
 		res.json({
 			confirmation: 'fail',
 			message: err.message

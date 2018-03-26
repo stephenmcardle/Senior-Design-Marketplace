@@ -19,7 +19,6 @@ router.post('/register', (req, res) => {
 		return
 	}
 	req.body.role = "student"
-	console.log(req.body)
 	turbo.createUser(req.body)
 	.then(data => {
 		req.vertexSession.user = {id: data.id} // set session. this logs the user in for future sessions.
@@ -37,7 +36,6 @@ router.post('/login', (req, res) => {
 		res.redirect('/dashboard') // redirect to dashboard page on successful login
 	})
 	.catch(err => {
-		console.log(err.message)
 		res.redirect('/error?message=' + err.message) // login failed, go back to error page
 	})
 })
@@ -54,14 +52,12 @@ router.post('/update', (req, res) => {
 	}
 
 	if (req.body.id != req.vertexSession.user.id){ // user ID's don't match, unauthorized
-		console.log(req.body)
 		res.redirect('/error?message=Not%20Authorized')
 		return
 	}
 
 	turbo.updateEntity('user', req.body.id, req.body)
 	.then(data => {
-		console.log(data)
 		res.redirect('/dashboard')
 	})
 	.catch(err => {

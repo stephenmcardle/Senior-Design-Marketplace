@@ -127,7 +127,7 @@ router.put('/:resource/:id', (req, res) => {
 router.post('/project/validate/:id', (req, res) => {
 	const controller = controllers['project']
 
-	controller.put(req.params.id, {status: 'approved', department: req.body.department})
+	controller.put(req.params.id, {status: 'approved', department: req.body.department, accepting: 'open'})
 	.then(data => {
 		res.json({
 			confirmation: 'success',

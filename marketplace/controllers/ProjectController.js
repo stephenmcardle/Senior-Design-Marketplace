@@ -46,7 +46,6 @@ module.exports = {
 
 	post: (params) => {
 		return new Promise((resolve, reject) => {
-			params.tags = JSON.parse(params.tags);
 			if (params.slug == null)
 				params['slug'] = slugify(params.name)
 			turbo.create(resource, params)
@@ -61,7 +60,9 @@ module.exports = {
 
 	put: (id, params) => {
 		return new Promise((resolve, reject) => {
-			params.tags = JSON.parse(params.tags);
+			if (params.tags) {
+				params.tags = JSON.parse(params.tags);
+			}
 			turbo.updateEntity(resource, id, params)
 			.then(data => {
 				resolve(data)

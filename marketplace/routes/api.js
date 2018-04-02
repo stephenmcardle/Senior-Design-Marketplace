@@ -80,6 +80,7 @@ router.post('/:resource', (req, res) => {
 	if (resource === 'project') {
 		req.body.status = 'pending';
 		req.body.accepting = 'open';
+		req.body.department = 'pending'
 	}
 
 	controller.post(req.body)

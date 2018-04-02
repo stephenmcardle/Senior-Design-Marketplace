@@ -5,11 +5,11 @@ const fs = require('fs')
 
 const createFile = (department) => {
 	return new Promise((resolve, reject) => {
-		const query = { role: 'student' }
+		let query = {}
 		if (department !== 'admin') {
 			query.major = department 
 		}
-		controllers['user'].get(query)
+		controllers['project'].get(query)
 		.then(data => {
 			converter(data, { checkSchemaDifferences: false })
 			.then(csv => {

@@ -178,14 +178,35 @@ router.get('/projects', (req, res) => {
 		status: 'approved'
 	}
 
+	controllers.user.getById(req.vertexSession.user.id)
+	.then(user => {
+		if (user.role === 'instructor') {
+			req.query = {}
+			controllers.project.get(req.query)
+			.then(data => {
+				data.forEach(project => {
+					console.log(project.tags)
+					project.timestamp = project.timestamp.split('T')[0]
+				})
+				res.render('instructor/projects', {projects: data})
+			})
+			.catch(err => {
+				res.redirect('/error?message=' + err.message)
+			})
 
-	controllers.project.get(req.query)
-	.then(data => {
-		data.forEach(project => {
-			project.tags = project.tags.join(', ');
-			project.timestamp = project.timestamp.split('T')[0]
-		})
-		res.render('projects', {projects: data})
+		} else {
+			controllers.project.get(req.query)
+			.then(data => {
+				data.forEach(project => {
+					project.tags = project.tags.join(', ');
+					project.timestamp = project.timestamp.split('T')[0]
+				})
+				res.render('projects', {projects: data})
+			})
+			.catch(err => {
+				res.redirect('/error?message=' + err.message)
+			})
+		}
 	})
 	.catch(err => {
 		res.redirect('/error?message=' + err.message)

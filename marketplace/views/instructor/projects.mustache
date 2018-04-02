@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+	{{>head}}
+</head>
+
+<body>
+	{{>nav}}
+
+	<div class="main-container">
+		<section class="space--sm">
+            <div class="container">
+                <div class="row">
+                    <div class="masonry masonry-blog-list">
+                        <div class="masonry__container">
+                            <h1 class="text-center">Projects - Instructor View</h1>
+                    		<hr />
+                            {{#projects}}
+                            <article class="col-xs-12 col-sm-12 col-lg-4 col-md-6">
+                                <div class="card" id="Guitar">
+                                    <img class="card-img-top" src="{{image}}" alt="Card image cap" style="height:300px;"/>
+                                    <div class="card-body">
+                                        <p class="card-text"> 
+                                            <span>{{timestamp}}</span><br />
+                                            <span>
+                                                Tags: {{tags}}
+                                            </span><br />
+                                            <span>
+                                                Desired Majors: {{majors}}
+                                            </span><br />
+                                            <span>
+                                                Approval Status: {{status}}
+                                            </span><br />
+                                            <span>
+                                                Application Status: {{accepting}}
+                                            </span><br />
+                                            <span>
+                                                Department: {{department}}
+                                            </span>
+                                        </p>  
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{slug}}">Read More</button>
+                                        <div class="modal fade" id="{{slug}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h2 class="modal-title" id="exampleModalLabel">{{name}}</h2>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        {{description}}
+                                                        <br/><br/>
+                                                        <a href="/project/{{slug}}">View Project &raquo;</a>
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                     <!--    <div class="article__title text-center">
+                                            <a href="/project/{{slug}}">
+                                                <h2>{{name}}</h2>
+                                            </a>
+                                            <span>{{timestamp}}</span><br />
+                                            <span>
+                                                Tags: {{tags}}
+                                            </span><br />
+                                            <span>
+                                                Desired Majors: {{majors}}
+                                            </span>
+                                            <span>
+                                                Department: {{department}}
+                                            </span>
+                                        </div>
+                                        <!--end article title-->
+                                    <!--     <div class="article__body">
+                                            <a href="/project/{{slug}}">
+                                                <img alt="Image" class="img-responsive center-block" src="{{image}}" />
+                                            </a>
+                                            <p class="text-center">
+                                                {{description}}
+                                            </p>
+                                            <a class="pull-right" href="/project/{{slug}}">View Project &raquo;</a>
+                                            
+                                        </div> -->
+                            </article>
+                            {{/projects}}
+                                    
+                                <!--end of masonry container-->
+                            <div class="pagination">
+                                <a class="pagination__prev" href="#" title="Previous Page">&laquo;</a>
+                                <ol>
+                                    <li>
+                                        <a href="#">1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">2</a>
+                                    </li>
+                                    <li class="pagination__current">3</li>
+                                    <li>
+                                        <a href="#">4</a>
+                                    </li>
+                                </ol>
+                                <a class="pagination__next" href="#" title="Next Page">&raquo;</a>
+                            </div>
+                        </div>
+                            <!--end masonry-->
+                    </div>
+                </div>
+            </div>
+                    <!--end of row-->
+                <!--end of container-->
+        </section>
+        {{>footer-light}}
+	</div>
+
+
+	<!-- Turbo library imports: jQuery, Turbo CDN, sample app.js.
+	NOTE: These should be minified in a build script -->
+
+
+
+
+    
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script type="text/javascript" src="/js/dropzone.js"></script> 
+	<script type="text/javascript" src="https://cdn.turbo360-dev.com/dist/turbo.min.js"></script>
+	<script type="text/javascript" src="/js/app.js"></script>
+    
+
+	<script type="text/javascript">
+		$(function(){
+            var turbo = Turbo({
+                site_id: '5a511633b06cbe0014f4b6eb'
+            })
+			$('#project-submit').click(function(event){
+				event.preventDefault()
+                var tags = $('#project-tags').val().split(',').map(function(item) {
+                    return item.trim();
+                });
+				var project = {
+					name: $('#project-name').val(),
+					description: $('#project-description').val(),
+                    tags: JSON.stringify(tags),
+                    image: $('#image-url').val()
+				}
+
+				$.ajax({
+					url : '/api/project',
+					type: 'POST',
+					data : project,
+					success: function(data, textStatus, jqXHR){
+						if (data.confirmation != 'success'){
+							alert('Error: ' + data.message)
+							return
+						}
+
+						window.location.href = '/projects'
+					},
+					error: function (jqXHR, textStatus, err){
+						alert('Error: ' + err.message)
+					}
+				})
+			})
+            $('#project-image').click(function(event){
+                event.preventDefault()
+                $('#project-submit').prop('disabled', true);
+                turbo.uploadFile(function(err, data){
+                    if (err) {
+                        alert('Error: ' + err.message)
+                        return
+
+                    }
+                    $('#image-url').attr("value", data.result.url)
+                    $('#project-submit').prop('disabled', false);
+                })
+            })
+		})
+        $('#myModal').on('shown.bs.modal', function () {
+            $('#myInput').trigger('focus')
+        })
+	</script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+</body>
+</html>

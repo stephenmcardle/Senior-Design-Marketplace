@@ -185,7 +185,6 @@ router.get('/projects', (req, res) => {
 			controllers.project.get(req.query)
 			.then(data => {
 				data.forEach(project => {
-					console.log(project.tags)
 					project.timestamp = project.timestamp.split('T')[0]
 				})
 				res.render('instructor/projects', {projects: data})
@@ -194,6 +193,18 @@ router.get('/projects', (req, res) => {
 				res.redirect('/error?message=' + err.message)
 			})
 
+		} else if (user.role === 'admin') {
+			req.query = {}
+			controllers.project.get(req.query)
+			.then(data => {
+				data.forEach(project => {
+					project.timestamp = project.timestamp.split('T')[0]
+				})
+				res.render('admin/projects', {projects: data})
+			})
+			.catch(err => {
+				res.redirect('/error?message=' + err.message)
+			})
 		} else {
 			controllers.project.get(req.query)
 			.then(data => {

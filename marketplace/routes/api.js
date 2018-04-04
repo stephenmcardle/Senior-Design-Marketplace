@@ -207,5 +207,56 @@ router.post('/user/validate/:id', (req, res) => {
 
 })
 
+router.post("/addapplication/:slug/:user",(req,res) => {
+	console.log("weeee")
+	const controller = controllers['user']
+	const controller1 = controllers['project']
+	let slug=req.params.slug
+	let user=req.params.user
+	controller.get({username:user})
+	.then(user1 => {
+		console.log(user1[0].id);
+		controller.put(user1[0].id,{group:slug})
+		.then(data => {
+			controller1.get({slug:slug})
+			.then(project => {
+				let ans=[user]
+				if(project[0].team!=null){
+					ans=project[0].team
+					ans.unshift(user)
+				}
+				console.log(project[0])
+				controller1.put(project[0].id,{team:ans})
+				.then(x => {
+					res.json({
+					confirmation: 'success',
+					data:x
+					})
+				})
+				.catch(err => {
+					console.log(err);
+
+				})
+			})
+			.catch(err => {
+				console.log("tits2");
+
+			})
+
+
+		})
+		.catch(err =>{
+			console.log("dick")
+
+		})
+	})
+	.catch(err =>{
+		console.log("boyz")
+
+	})
+	
+
+})
+
 
 module.exports = router

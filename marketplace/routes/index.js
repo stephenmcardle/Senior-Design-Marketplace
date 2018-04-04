@@ -290,7 +290,12 @@ router.get('/editProject/:slug', (req, res) => {
 				if (project.department === user.major) {
 					project.tags = project.tags.join(', ')
 					project.timestamp = project.timestamp.split('T')[0]
-					res.render('instructor/editProject', project)
+					controllers.projectApp.get({project_name:project.name})
+					.then(data2 => {
+						res.render('instructor/editProject', {project:project,projectApp:data2})
+
+					})
+					
 				} else {
 					res.redirect('/error?message=Not%20Authorized')
 				}

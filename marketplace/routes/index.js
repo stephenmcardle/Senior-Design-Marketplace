@@ -299,7 +299,7 @@ router.get('/editProject/:slug', (req, res) => {
 				if (project.department === user.major) {
 					project.tags = project.tags.join(', ')
 					project.timestamp = project.timestamp.split('T')[0]
-					controllers.projectApp.get({project_name:project.name})
+					controllers.projectApp.get({project_name:project.name,valid:false})
 					.then(applications => {
 						controllers.user.get({ role: 'advisor' })
 						.then(advisors => {

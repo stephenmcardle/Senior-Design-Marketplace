@@ -7,7 +7,7 @@ const createFile = (department) => {
 	return new Promise((resolve, reject) => {
 		let query = {}
 		if (department !== 'admin') {
-			query.major = department 
+			query.department = department 
 		}
 		controllers['project'].get(query)
 		.then(data => {

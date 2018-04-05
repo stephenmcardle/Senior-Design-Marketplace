@@ -19,8 +19,16 @@
                         <label for="project-tags">Tags</label>
                         <input id="project-tags" class="form-control" type="text" name="tags" value="{{project.tags}}" />
 
+
                         <label for="project-advisor">Advisor</label>
-                        <input id="project-advisor" class="form-control" type="text" name="tags" placeholder="Project Advisor" value="{{project.advisor}}" />
+                        <div id="select-div">
+                          <select class="form-control sel" id="project-advisor" name="advisor" required>
+                            <option value="" disabled selected>Select an Advisor</option>
+                            {{#advisors}}
+                            <option value="{{id}}">{{firstName}} {{lastName}}</option>
+                            {{/advisors}}
+                          </select>
+                        </div>
 
                         <label for="project-min">Minimum Team Size</label>
                         <input id="project-min" class="form-control" type="number" name="minsize" value="{{project.minsize}}" />
@@ -92,6 +100,11 @@
             var turbo = Turbo({
                 site_id: '5a511633b06cbe0014f4b6eb'
             })
+            if ('{{project.advisor}}' !== '') {
+                $('[name=advisor]').val('{{project.advisor}}');
+            }
+
+
             if ('{{accepting}}' === 'open') {
                 $('[name=accepting]').val('open');
             } else if ('{{accepting}}' === 'closed') {
@@ -116,7 +129,7 @@
                 }
 
                 $.ajax({
-                    url : '/api/editProject/{{id}}',
+                    url : '/api/project/edit/{{project.id}}',
                     type: 'POST',
                     data : project,
                     success: function(data, textStatus, jqXHR){

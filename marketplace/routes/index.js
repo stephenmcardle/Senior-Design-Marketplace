@@ -79,6 +79,15 @@ router.get('/dashboard', (req, res) => {
 					res.render('instructor/dashboard', data)
 				})
 			})
+		} else if (user.role === 'advisor') {
+			controllers.project.get({ advisor: req.vertexSession.user.id })
+			.then(projects => {
+				const data = {
+					user: user,
+					projects: projects
+				}
+				res.render('advisor/dashboard', data)
+			})
 		} else {
 			controllers.projectApp.get({theUserID:user.id,valid:false})
 				.then(projectApp => {
@@ -281,19 +290,28 @@ router.get('/editProject/:slug', (req, res) => {
 	.then(user => {
 		if (user.role === 'instructor') {
 			controllers.project.get({slug:req.params.slug})
-			.then(data => {
-				if (data.length == 0){ // not found, throw error
+			.then(projects => {
+				if (projects.length == 0){ // not found, throw error
 					throw new Error('Listing not found.')
 					return
 				}
-				const project = data[0]
+				const project = projects[0]
 				if (project.department === user.major) {
 					project.tags = project.tags.join(', ')
 					project.timestamp = project.timestamp.split('T')[0]
 					controllers.projectApp.get({project_name:project.name})
-					.then(data2 => {
-						res.render('instructor/editProject', {project:project,projectApp:data2})
-
+					.then(applications => {
+						controllers.user.get({ role: 'advisor' })
+						.then(advisors => {
+							console.log(advisors)
+							res.render('instructor/editProject', { project:project, projectApp:applications, advisors:advisors })
+						})
+						.catch(err => {
+							res.redirect('/error?message=' + err.message)
+						})	
+					})
+					.catch(err => {
+						res.redirect('/error?message=' + err.message)
 					})
 					
 				} else {

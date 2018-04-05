@@ -125,7 +125,7 @@ router.put('/:resource/:id', (req, res) => {
 	})
 })
 
-router.post('/editProject/:id', (req, res) => {	
+router.post('/project/edit/:id', (req, res) => {	
 	const resource = 'project'
 	const controller = controllers[resource] // check if valid resource
 

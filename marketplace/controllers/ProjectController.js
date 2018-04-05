@@ -48,6 +48,7 @@ module.exports = {
 		return new Promise((resolve, reject) => {
 			if (params.slug == null)
 				params['slug'] = slugify(params.name)
+			params.tags = JSON.parse(params.tags)
 			turbo.create(resource, params)
 			.then(data => {
 				resolve(data)

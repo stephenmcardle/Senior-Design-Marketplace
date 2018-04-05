@@ -21,9 +21,10 @@
                                     		<img id="avatar-img" src={{user.image}} class="image--md" />
                                     	</label>
                                     	<input id="image-url" type="text" name="image" style="display:none" />
+                                        <input id="update-image-id" type="type" name="id" value="{{user.id}}" />
 									</form>
                                     <span class="h5">{{user.firstName}} {{user.lastName}}</span>
-                                    <span>{{user.role}} account</span>
+                                    <span>{{user.role}}</span>
                                     <span class="label">{{user.role}}</span>
                                 </div>
                                 <hr>
@@ -38,7 +39,7 @@
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <label>First Name:</label>
-                                                <input type="text" name="firstName" value="{{user.firstName}}" />
+                                                <input type="text" name="firstName" value="{{user.id}}" />
                                             </div>
                                             <div class="col-sm-6">
                                                 <label>Last Name:</label>
@@ -134,14 +135,12 @@
 	    $('#user-image').click(function(event){
                 event.preventDefault()
                 $('#avatar-img').attr("src", "/images/spinner.gif")
-                //$('#user-submit').prop('disabled', true);
                 turbo.uploadFile(function(err, data){
                     if (err) {
                         alert('Error: ' + err.message)
                         return
                     }
                     $('#image-url').attr("value", data.result.url)
-                    //$('#user-submit').prop('disabled', false);
                     $('#image-form').submit()
                     console.log('Submitted')
                 })

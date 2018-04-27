@@ -2,12 +2,7 @@ const Promise = require('bluebird')
 const turbo = require('turbo360')({site_id:process.env.TURBO_APP_ID})
 const resource = 'projectApp'
 
- /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
-	'Listing' is a generic entity with attributes that would be used in
-	many startup databases. For example, every Listing has a profile
-	attribute, description, image, name, price, and location. A Listing
-	can be thought of as a "widget"
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* This controller manages SD project applications for the Turbo project */
 
 
 const slugify = function(text){

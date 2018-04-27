@@ -12,6 +12,8 @@ $ sudo npm i -g webpack
 $ sudo npm i -g turbo-cli
 ```
 
+Update: Towards the end of the 2018 Spring semester, Turbo was updated to use Node 8.x. This means the project can now be updated to use async/await, as well as other features.
+
 ## File Structure
 
 ### marketplace
@@ -56,7 +58,7 @@ These are standard Node/Express routes. When a user hits a route (by specifying 
 
 #### controllers
 
-Controllers connect the server to the Turbo datastore. They work very similarly to MongoDB database functions. The title of the controller specifies what entity it is used for. If one wanted to add a new database function, such as getProjectCreatedBefore(date), it would be done in ProjectController.js. The general functionality provided by controllers is get (fetch), post (create), put (update), and delete.
+Controllers connect the server to the Turbo datastore. They work very similarly to MongoDB database functions. The title of the controller specifies what entity it is used for. If one wanted to add a new database function, such as getProjectCreatedBefore(date), it would be done in ProjectController.js. The general functionality provided by controllers is get (fetch), post (create), put (update), and delete (remove).
 
 ## Running the Project
 

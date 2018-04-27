@@ -68,7 +68,7 @@ If you haven't logged in to Turbo locally (via terminal), run the following comm
 $ turbo login
 ```
 
-And enter the same credentials you used to create your account on Turbo 360's website.
+And enter the same credentials you used to create your account on Turbo 360's website. Note that in order to access the Turbo Datastore, you must be added to the project as a collaborator on the Turbo website.
 
 To test the project locally, run the following command:
 

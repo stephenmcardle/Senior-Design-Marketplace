@@ -27,7 +27,7 @@
                                     <span>{{user.role}} account</span>
                                     <span class="label">{{user.role}}</span>
                                 </div>
-                                <hr>
+                                <hr />
                                 
                             </div>
                         </div>
@@ -81,26 +81,27 @@
                     <div class="row">
                         <div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
                             <div class="masonry masonry-blog-list">
-                                <div class="masonry__container">
-                                    <h1 class="text-center">Our Applications</h1>
-                                    <h2>Pending Applications</h2>
-                                    {{#ourapps}}
-                                    <hr />
-                                    <article class="">
-                                        <div class="article__title text-center">
-                                            <h1>{{project_name}}</h1>
+                                <div class="masonry__container text-center">
+                                    <h1 class="text-center"><strong>My Applications</strong></h1>
+                                    <br />
+                                    <div class="col-md-6">
+                                        <h2>Pending Applications</h2>
+                                        <hr />
+                                        {{#ourapps}}
+                                        <div>
+                                            <h3>{{project_name}}</h3>
                                         </div>
-                                    </article>
-                                    {{/ourapps}}
-                                    <h2>Accepted Applications</h2>
-                                    {{#ourappstrue}}
-                                    <hr />
-                                    <article class="">
-                                        <div class="article__title text-center">
-                                            <h1>{{project_name}}</h1>
+                                        {{/ourapps}}
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h2>Accepted Applications</h2>
+                                        <hr />
+                                        {{#ourappstrue}}
+                                        <div>
+                                            <h3>{{project_name}}</h3>
                                         </div>
-                                    </article>
-                                    {{/ourappstrue}}
+                                        {{/ourappstrue}}
+                                    </div>
 
 
         {{>footer-light}}

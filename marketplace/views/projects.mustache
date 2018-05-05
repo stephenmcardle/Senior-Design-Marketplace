@@ -16,9 +16,10 @@
                             <h1 class="text-center">Projects</h1>
                     		<hr />
                             {{#projects}}
-                            <article class="col-xs-12 col-sm-12 col-lg-4 col-md-6">
-                                <div class="card" id="Guitar">
-                                    <img class="card-img-top" src="{{image}}" alt="Card image cap" style="height:300px;"/>
+                            <div class="col-md-6">
+                                <div class="card" style="margin-bottom: 10px;">
+                                    <h2 class="text-center">{{name}}</h2><br />
+                                    <img class="card-img-top" src="{{image}}=s380-c" style="height:100%" alt="Project image"/>
                                     <div class="card-body">
                                         <p class="card-text"> 
                                             <span>{{timestamp}}</span><br />
@@ -28,77 +29,16 @@
                                             <span>
                                                 Desired Majors: {{majors}}
                                             </span>
-                                        </p>  
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{slug}}">Read More</button>
-                                        <div class="modal fade" id="{{slug}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h2 class="modal-title" id="exampleModalLabel">{{name}}</h2>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        {{description}}
-                                                        <br/><br/>
-                                                        <a href="/project/{{slug}}">View Project &raquo;</a>
-
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        </p>
+                                        <form action="/project/{{slug}}">
+                                            <button type="submit" class="btn btn-primary">Read More</button>
+                                        </form>  
                                     </div>
                                 </div>
-                                     <!--    <div class="article__title text-center">
-                                            <a href="/project/{{slug}}">
-                                                <h2>{{name}}</h2>
-                                            </a>
-                                            <span>{{timestamp}}</span><br />
-                                            <span>
-                                                Tags: {{tags}}
-                                            </span><br />
-                                            <span>
-                                                Desired Majors: {{majors}}
-                                            </span>
-                                            <span>
-                                                Department: {{department}}
-                                            </span>
-                                        </div>
-                                        <!--end article title-->
-                                    <!--     <div class="article__body">
-                                            <a href="/project/{{slug}}">
-                                                <img alt="Image" class="img-responsive center-block" src="{{image}}" />
-                                            </a>
-                                            <p class="text-center">
-                                                {{description}}
-                                            </p>
-                                            <a class="pull-right" href="/project/{{slug}}">View Project &raquo;</a>
-                                            
-                                        </div> -->
-                            </article>
+                            </div>
                             {{/projects}}
                                     
                                 <!--end of masonry container-->
-                            <div class="pagination">
-                                <a class="pagination__prev" href="#" title="Previous Page">&laquo;</a>
-                                <ol>
-                                    <li>
-                                        <a href="#">1</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">2</a>
-                                    </li>
-                                    <li class="pagination__current">3</li>
-                                    <li>
-                                        <a href="#">4</a>
-                                    </li>
-                                </ol>
-                                <a class="pagination__next" href="#" title="Next Page">&raquo;</a>
-                            </div>
                         </div>
                             <!--end masonry-->
                     </div>

@@ -366,16 +366,5 @@ router.get('/error', (req, res) => {
 	res.render('error', {message: req.query.message})
 })
 
-// This is for static pages, and it is currently not used
-router.get('/:page', (req, res) => {
-	const page = staticPages[req.params.page]
-	if (page == null){
-		res.render('error', {message: 'Page not found'})
-		return
-	}
-
-	res.render(page, null)
-})
-
 
 module.exports = router

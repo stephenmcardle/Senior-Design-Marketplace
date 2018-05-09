@@ -208,7 +208,6 @@ router.post('/user/validate/:id', (req, res) => {
 })
 
 router.post("/addapplication/:slug/:user",(req,res) => {
-	console.log("weeeedddd")
 	const controller = controllers['user']
 	const controller1 = controllers['project']
 	const controller2 = controllers['projectApp']
@@ -217,7 +216,6 @@ router.post("/addapplication/:slug/:user",(req,res) => {
 	let user=req.params.user
 	controller.get({username:user})
 	.then(user1 => {
-		console.log(user1[0].id);
 		controller.put(user1[0].id,{group:slug})
 		.then(data => {
 			controller1.get({slug:slug})
@@ -227,7 +225,6 @@ router.post("/addapplication/:slug/:user",(req,res) => {
 					ans=project[0].team
 					ans.unshift(user)
 				}
-				console.log(project[0])
 				controller1.put(project[0].id,{team:ans})
 				.then(x => {
 					controller2.get({theUserName:user,project_name:project[0].name})
@@ -249,30 +246,23 @@ router.post("/addapplication/:slug/:user",(req,res) => {
 
 					})
 					.catch(x =>{
-						console.log("weeee");
-
+						console.log(x)
 					})
 				})
 			.catch(err => {
 				console.log(err);
-
 			})
 		})
 		.catch(err => {
-			console.log("tits2");
-
+			console.log(err);
 		})
-
-
 	})
 	.catch(err =>{
-		console.log("dick")
-
+		console.log(err);
 	})
 })
 .catch(err =>{
-	console.log("boyz")
-
+	console.log(err);
 })
 })
 	

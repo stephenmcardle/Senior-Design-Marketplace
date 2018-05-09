@@ -52,8 +52,6 @@ router.post('/update', (req, res) => {
 	}
 
 	if (req.body.id != req.vertexSession.user.id){ // user ID's don't match, unauthorized
-		console.log(req.body)
-		console.log(req.vertexSession.user.id)
 		res.redirect('/error?message=Not%20Authorized')
 		return
 	}
